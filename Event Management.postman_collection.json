@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "ac9c953a-6ed1-4644-81ae-94237bd9caf1",
+		"name": "Event Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40124450"
+	},
+	"item": [
+		{
+			"name": "Attendees",
+			"item": [
+				{
+					"name": "Read events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDQ3ZTZkYjZmMjM1YTA4NDZlN2IiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MjUzMjksImV4cCI6MTczNjUzMjUyOSwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbInJlYWQ6ZXZlbnRzIl19.bdQ9y9M293Rl_MLC6ASpoyNDlX8sU9cwbxkTXCdDULfiMxY0Okxsu4QORzS7Os1fBbui3kQD33DhnrooV93ntb7EMKZguq3gZoQ3neSLWBGEvelLNeY1nvyn4l0SxORFekn7tmcarl4E9--Zt-rTNZDhCwUGEx1knVNMWhKI81vYuANsxHLLUkNVQctjBFfJ7mKJfqJQ8dwkckOJI_dH7a0nkIx1XCRByJfjd3Lwe7ay0fRkdZMTEFfOn645DdK47eHORt7qsDJv0CeHimlF47RLKuSqg2P5qwUETb3JfKIOxdfVJZIKl_V7DtHPidTDA6NJGpdw1zYzySV2brQsAw"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/events"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organizer",
+			"item": [
+				{
+					"name": "Read events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRjMzg2MmMyZDg4OTYyNjRmNDAiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1Mjc0ODIsImV4cCI6MTczNjUzNDY4Miwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzY2hlZHVsZSIsIm1hbmFnZTphdHRlbmRlZXMiLCJyZWFkOmV2ZW50cyJdfQ.WHJVgBkm5CV6nZO2mF5B_cvAifgmwAuL2KBLaRjC6qChTbUQOjly_R84JScQwQ0k2SsDjOinZCi1phWPzcQCw1e3_5WeSoPwQcJ5xCe0g2T1RBoAbe62dfDzF0y81JtqJ7PCtZHVgLtM1CaaVxMqSoxI5xzCayIROyTDJDGAZcdh_KEopamhxaFtchz2Gr9rED0upCTKSd9xmRNCrp7lxuG1lqtSMXdOVTSBriMSIhBfA9LiWVdwEoACosYdmf5M37xONSVqGEdD5ZaGlggsyWtT-S4mpj86biB92Uk8KKdzDJVSsRyehtknnV9PCsQ145HxP8AJlSv4qHQ54NJzKw"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Manage attendees",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRjMzg2MmMyZDg4OTYyNjRmNDAiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1Mjc0ODIsImV4cCI6MTczNjUzNDY4Miwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzY2hlZHVsZSIsIm1hbmFnZTphdHRlbmRlZXMiLCJyZWFkOmV2ZW50cyJdfQ.WHJVgBkm5CV6nZO2mF5B_cvAifgmwAuL2KBLaRjC6qChTbUQOjly_R84JScQwQ0k2SsDjOinZCi1phWPzcQCw1e3_5WeSoPwQcJ5xCe0g2T1RBoAbe62dfDzF0y81JtqJ7PCtZHVgLtM1CaaVxMqSoxI5xzCayIROyTDJDGAZcdh_KEopamhxaFtchz2Gr9rED0upCTKSd9xmRNCrp7lxuG1lqtSMXdOVTSBriMSIhBfA9LiWVdwEoACosYdmf5M37xONSVqGEdD5ZaGlggsyWtT-S4mpj86biB92Uk8KKdzDJVSsRyehtknnV9PCsQ145HxP8AJlSv4qHQ54NJzKw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pravin@example.com\",\r\n    \"name\": \"Pravinkumar r\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/events/1/attendees"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRjMzg2MmMyZDg4OTYyNjRmNDAiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1Mjc0ODIsImV4cCI6MTczNjUzNDY4Miwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzY2hlZHVsZSIsIm1hbmFnZTphdHRlbmRlZXMiLCJyZWFkOmV2ZW50cyJdfQ.WHJVgBkm5CV6nZO2mF5B_cvAifgmwAuL2KBLaRjC6qChTbUQOjly_R84JScQwQ0k2SsDjOinZCi1phWPzcQCw1e3_5WeSoPwQcJ5xCe0g2T1RBoAbe62dfDzF0y81JtqJ7PCtZHVgLtM1CaaVxMqSoxI5xzCayIROyTDJDGAZcdh_KEopamhxaFtchz2Gr9rED0upCTKSd9xmRNCrp7lxuG1lqtSMXdOVTSBriMSIhBfA9LiWVdwEoACosYdmf5M37xONSVqGEdD5ZaGlggsyWtT-S4mpj86biB92Uk8KKdzDJVSsRyehtknnV9PCsQ145HxP8AJlSv4qHQ54NJzKw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"end_time\": \"2025-02-15T13:30:00\",\r\n    \"start_time\": \"2025-02-15T10:00:00\",\r\n    \"title\": \"Workshop on Gitlab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/events/1/schedule"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Read events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRmNDMyNmI2YzlhZDQ3OTNhNTciLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MjgwNTAsImV4cCI6MTczNjUzNTI1MCwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpldmVudHMiLCJjcmVhdGU6c2NoZWR1bGUiLCJkZWxldGU6ZXZlbnRzIiwibWFuYWdlOmF0dGVuZGVlcyIsInJlYWQ6ZXZlbnRzIiwidXBkYXRlOmV2ZW50cyJdfQ.ctxwzmMk9nHQSRvPLUvdW3luJtwmVo3mjrpPrNMldZFtsPJJq4vNDZhsnXDYaNtUR78iYWRWP5hdQ4SV2D_zTatDdDNRXOkrZz4uO5dGGmO_4rSy1BaqMYu1ak442ZBLl4AO4MXxTsonD0GIrC57juY4S5msyH74Mo7ruCYvZ-ujf6-gEz5yDf-kB4MU01nY6s-ubnXTNCAdCw8UI28ScSBXVY8owGub1xwkrU7_evNpy7LC4hNQpvbcb-uHcz3QK5zQyOB1h1cgJ_WQp93vYq_AlK5GAP5D5ozN2NgX43XywYTfRI-Ow9d29HRhzBP64r9UE786Ypaiw73VDsVcoA"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:5000/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Manage attendees",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRjMzg2MmMyZDg4OTYyNjRmNDAiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1Mjc0ODIsImV4cCI6MTczNjUzNDY4Miwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzY2hlZHVsZSIsIm1hbmFnZTphdHRlbmRlZXMiLCJyZWFkOmV2ZW50cyJdfQ.WHJVgBkm5CV6nZO2mF5B_cvAifgmwAuL2KBLaRjC6qChTbUQOjly_R84JScQwQ0k2SsDjOinZCi1phWPzcQCw1e3_5WeSoPwQcJ5xCe0g2T1RBoAbe62dfDzF0y81JtqJ7PCtZHVgLtM1CaaVxMqSoxI5xzCayIROyTDJDGAZcdh_KEopamhxaFtchz2Gr9rED0upCTKSd9xmRNCrp7lxuG1lqtSMXdOVTSBriMSIhBfA9LiWVdwEoACosYdmf5M37xONSVqGEdD5ZaGlggsyWtT-S4mpj86biB92Uk8KKdzDJVSsRyehtknnV9PCsQ145HxP8AJlSv4qHQ54NJzKw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pravin@example.com\",\r\n    \"name\": \"Pravinkumar r\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/events/1/attendees"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRmNDMyNmI2YzlhZDQ3OTNhNTciLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MjgwNTAsImV4cCI6MTczNjUzNTI1MCwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpldmVudHMiLCJjcmVhdGU6c2NoZWR1bGUiLCJkZWxldGU6ZXZlbnRzIiwibWFuYWdlOmF0dGVuZGVlcyIsInJlYWQ6ZXZlbnRzIiwidXBkYXRlOmV2ZW50cyJdfQ.ctxwzmMk9nHQSRvPLUvdW3luJtwmVo3mjrpPrNMldZFtsPJJq4vNDZhsnXDYaNtUR78iYWRWP5hdQ4SV2D_zTatDdDNRXOkrZz4uO5dGGmO_4rSy1BaqMYu1ak442ZBLl4AO4MXxTsonD0GIrC57juY4S5msyH74Mo7ruCYvZ-ujf6-gEz5yDf-kB4MU01nY6s-ubnXTNCAdCw8UI28ScSBXVY8owGub1xwkrU7_evNpy7LC4hNQpvbcb-uHcz3QK5zQyOB1h1cgJ_WQp93vYq_AlK5GAP5D5ozN2NgX43XywYTfRI-Ow9d29HRhzBP64r9UE786Ypaiw73VDsVcoA"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"end_time\": \"2025-02-15T13:30:00\",\r\n    \"start_time\": \"2025-02-15T10:00:00\",\r\n    \"title\": \"Workshop on Gitlab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/events/1/schedule"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRmNDMyNmI2YzlhZDQ3OTNhNTciLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MjgwNTAsImV4cCI6MTczNjUzNTI1MCwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpldmVudHMiLCJjcmVhdGU6c2NoZWR1bGUiLCJkZWxldGU6ZXZlbnRzIiwibWFuYWdlOmF0dGVuZGVlcyIsInJlYWQ6ZXZlbnRzIiwidXBkYXRlOmV2ZW50cyJdfQ.ctxwzmMk9nHQSRvPLUvdW3luJtwmVo3mjrpPrNMldZFtsPJJq4vNDZhsnXDYaNtUR78iYWRWP5hdQ4SV2D_zTatDdDNRXOkrZz4uO5dGGmO_4rSy1BaqMYu1ak442ZBLl4AO4MXxTsonD0GIrC57juY4S5msyH74Mo7ruCYvZ-ujf6-gEz5yDf-kB4MU01nY6s-ubnXTNCAdCw8UI28ScSBXVY8owGub1xwkrU7_evNpy7LC4hNQpvbcb-uHcz3QK5zQyOB1h1cgJ_WQp93vYq_AlK5GAP5D5ozN2NgX43XywYTfRI-Ow9d29HRhzBP64r9UE786Ypaiw73VDsVcoA"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"date\": \"2025-03-15T09:00:00\",\r\n        \"description\": \"Graduation conference on UG\",\r\n        \"organizer_id\":2,\r\n        \"name\": \"Graudation day\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/events"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRmNDMyNmI2YzlhZDQ3OTNhNTciLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MjgwNTAsImV4cCI6MTczNjUzNTI1MCwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpldmVudHMiLCJjcmVhdGU6c2NoZWR1bGUiLCJkZWxldGU6ZXZlbnRzIiwibWFuYWdlOmF0dGVuZGVlcyIsInJlYWQ6ZXZlbnRzIiwidXBkYXRlOmV2ZW50cyJdfQ.ctxwzmMk9nHQSRvPLUvdW3luJtwmVo3mjrpPrNMldZFtsPJJq4vNDZhsnXDYaNtUR78iYWRWP5hdQ4SV2D_zTatDdDNRXOkrZz4uO5dGGmO_4rSy1BaqMYu1ak442ZBLl4AO4MXxTsonD0GIrC57juY4S5msyH74Mo7ruCYvZ-ujf6-gEz5yDf-kB4MU01nY6s-ubnXTNCAdCw8UI28ScSBXVY8owGub1xwkrU7_evNpy7LC4hNQpvbcb-uHcz3QK5zQyOB1h1cgJ_WQp93vYq_AlK5GAP5D5ozN2NgX43XywYTfRI-Ow9d29HRhzBP64r9UE786Ypaiw73VDsVcoA"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"date\": \"2025-03-15T09:00:00\",\r\n        \"description\": \"Graduation conference on PG\",\r\n        \"organizer_id\":2,\r\n        \"name\": \"Graudation day PG\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:5000/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRmNDMyNmI2YzlhZDQ3OTNhNTciLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MjgwNTAsImV4cCI6MTczNjUzNTI1MCwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpldmVudHMiLCJjcmVhdGU6c2NoZWR1bGUiLCJkZWxldGU6ZXZlbnRzIiwibWFuYWdlOmF0dGVuZGVlcyIsInJlYWQ6ZXZlbnRzIiwidXBkYXRlOmV2ZW50cyJdfQ.ctxwzmMk9nHQSRvPLUvdW3luJtwmVo3mjrpPrNMldZFtsPJJq4vNDZhsnXDYaNtUR78iYWRWP5hdQ4SV2D_zTatDdDNRXOkrZz4uO5dGGmO_4rSy1BaqMYu1ak442ZBLl4AO4MXxTsonD0GIrC57juY4S5msyH74Mo7ruCYvZ-ujf6-gEz5yDf-kB4MU01nY6s-ubnXTNCAdCw8UI28ScSBXVY8owGub1xwkrU7_evNpy7LC4hNQpvbcb-uHcz3QK5zQyOB1h1cgJ_WQp93vYq_AlK5GAP5D5ozN2NgX43XywYTfRI-Ow9d29HRhzBP64r9UE786Ypaiw73VDsVcoA"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:5000/events/3"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

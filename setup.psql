@@ -1,0 +1,76 @@
+-- Reset database state
+DROP TABLE IF EXISTS public.attendances CASCADE;
+DROP TABLE IF EXISTS public.schedules CASCADE;
+DROP TABLE IF EXISTS public.attendees CASCADE;
+DROP TABLE IF EXISTS public.events CASCADE;
+
+DROP SEQUENCE IF EXISTS public.events_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS public.attendees_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS public.schedules_id_seq CASCADE;
+
+-- Create extension
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+-- Create tables
+CREATE TABLE public.events (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL UNIQUE,
+    description VARCHAR,
+    date TIMESTAMP NOT NULL,
+    organizer_id INTEGER NOT NULL
+);
+
+CREATE TABLE public.attendees (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL UNIQUE
+);
+
+CREATE TABLE public.schedules (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NOT NULL,
+    event_id INTEGER NOT NULL,
+    CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES public.events(id) ON DELETE CASCADE
+);
+
+CREATE TABLE public.attendances (
+    attendee_id INTEGER NOT NULL,
+    event_id INTEGER NOT NULL,
+    PRIMARY KEY (attendee_id, event_id),
+    CONSTRAINT fk_attendee FOREIGN KEY (attendee_id) REFERENCES public.attendees(id) ON DELETE CASCADE,
+    CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES public.events(id) ON DELETE CASCADE
+);
+
+-- Insert data using tab-delimited format
+COPY public.events (id, name, description, date, organizer_id) FROM stdin DELIMITER E'\t';
+1	Tech Conference	Annual tech conference on innovation.	2025-03-15 09:00:00	1
+2	Art Expo	Exhibition of modern art.	2025-04-20 10:00:00	2
+\.
+
+COPY public.attendees (id, name, email) FROM stdin DELIMITER E'\t';
+1	Alice Johnson	alice@example.com
+2	Bob Smith	bob@example.com
+\.
+
+COPY public.schedules (id, title, start_time, end_time, event_id) FROM stdin DELIMITER E'\t';
+1	Keynote Speech	2025-03-15 09:30:00	2025-03-15 10:30:00	1
+2	Workshop on AI	2025-03-15 11:00:00	2025-03-15 12:30:00	1
+\.
+
+COPY public.attendances (attendee_id, event_id) FROM stdin DELIMITER E'\t';
+1	1
+2	1
+\.
+
+-- Set sequence values
+SELECT pg_catalog.setval('public.events_id_seq', 2, true);
+SELECT pg_catalog.setval('public.attendees_id_seq', 2, true);
+SELECT pg_catalog.setval('public.schedules_id_seq', 2, true);
+
+-- Verify data
+SELECT * FROM public.events;
+SELECT * FROM public.attendees;
+SELECT * FROM public.schedules;
+SELECT * FROM public.attendances;

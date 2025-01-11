@@ -1,0 +1,19 @@
+{
+    "roles": {
+        "Attendee": {
+            "description": "Can view all event details and particular event details using event id",
+            "jwt_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDQ3ZTZkYjZmMjM1YTA4NDZlN2IiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MzUwODIsImV4cCI6MTczNjU0MjI4Miwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbInJlYWQ6ZXZlbnRzIl19.bSHIzqUQT-s8JC_YrJi8LjXRcWXlWrUHmD8pku6ImnyNZJTNpn-wKel5wY4b5ubLMWUbRchmR48gpRf0V9ss3TnukVrnYKTKv0WzdJfGy3MR5PVR5QSaHN4nOFYIF4GStsRCy9XYgqZxbrIidImnmJwsm01WrzTVqs63Z9Qy2BOJ1oRZsaxTutn5HrxaLcyd4jnWO0a3OpRf8926_9dRFRsc68Xyj5GHtX9OuIW-b42vF7jo5GpjIfAUuPZpgToInlrVCziw6xKjVQuRqWsvVNmBbB_ByAFrUu8WUYV6j4rXLP0VAlJu5ySU3IfpFlSrH8ftCwYC7PRBqRg6CyJsvQ",
+            "permissions": ["read:events"]
+        },
+        "Organizer": {
+            "description": "All permissions a Attendee has and add Schedules , attendees",
+            "jwt_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRjMzg2MmMyZDg4OTYyNjRmNDAiLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MzUyNDEsImV4cCI6MTczNjU0MjQ0MSwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzY2hlZHVsZSIsIm1hbmFnZTphdHRlbmRlZXMiLCJyZWFkOmV2ZW50cyJdfQ.iK39ih0iSuqShz3oGNYHv18vTBi2DEjH593ifP9iFHfMxFEH9ft2sjK9ZCuToiYpS0GumI2aJnxh5N-S4hVNdnz3rWIrLgXLWQM0vy3yacZptDxJ56-2rtVpp2TY2D5I-E566UfoxbI0m2WwfjSXejpjo3v42v0j1-651qwVoh6ME2ipdeltSI4Uus8eRXYcrXoRvAltFYrxOcDoU2CibMUzPF3QHrvoVa4NiltUtxEA7L0p6zgv93mLh1-5km9HywiGiV2rdLc95gX2VsHhx-3Bx86zYcAZqMGK36syJkeX_PR2AWOwWmu9f3WYveDwtgSPbauwCa6gCMWpl7GuSg",
+            "permissions": ["read:events", "create:schedule", "manage:attendees"]
+        },
+        "Admin": {
+            "description": "All permissions a Casting Director has and add or delete a movie from the database",
+            "jwt_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhYVEI3U29WQ2Q1eVg5VkxLWWZvdiJ9.eyJpc3MiOiJodHRwczovL2Rldi1wa3Byb2plY3RzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NzgxNDRmNDMyNmI2YzlhZDQ3OTNhNTciLCJhdWQiOiJFdmVudE1hbmFnZW1lbnQiLCJpYXQiOjE3MzY1MzUzOTEsImV4cCI6MTczNjU0MjU5MSwic2NvcGUiOiIiLCJhenAiOiJwdlVock4wUEhtampQYUdnSDY0V2RPRTJTd01UOGYwViIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpldmVudHMiLCJjcmVhdGU6c2NoZWR1bGUiLCJkZWxldGU6ZXZlbnRzIiwibWFuYWdlOmF0dGVuZGVlcyIsInJlYWQ6ZXZlbnRzIiwidXBkYXRlOmV2ZW50cyJdfQ.kyJ5QNEToYpofIZ0izZptJYy4lmsnogY-pQLvKTCCFxF50-0fo1eioqT9VNxYfAH2OILE4qN-f1lN_la_dxZdkGV5FLnDpG-6YxPmFc0Hi_b9RxG59F4xnClu_rIUv10LesrhESXPnqdoDYfFSU9kN7DbzaZOpTZas3dMP7ReH9ErHxk7PAvPjA78lAgvhX7lPQQl3uP-DuesOdwVtH4ySd3EJSAW6Y6Pd0JvUQK7ZtJYxwVDHh2pWjlL_jNelRBwWAM25FfvLVTBZhkdJ_WQu5UtAlqWDKQ8UKP4Vd-jVnQwCYrtN5HOifO7wHrilPFonBO6Vmop_wgR66qHWHqyw",
+            "permissions": ["read:events", "create:events", "create:schedule", "manage:attendees", "delete:events", "update:events"]
+        }
+    }
+}
