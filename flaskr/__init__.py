@@ -218,11 +218,10 @@ def create_app(test_config=None):
     @requires_auth('update:events')
     def update_event(payload, event_id):
         data = request.get_json()
+        event = Event.query.get(event_id)
+        if not event:
+            abort(404, "Event not found")
         try:
-            event = Event.query.get(event_id)
-            if not event:
-                abort(404, "Event not found")
-
             if 'name' in data:
                 event.name = data['name']
             if 'description' in data:
@@ -245,11 +244,10 @@ def create_app(test_config=None):
     @app.route('/events/<int:event_id>', methods=['DELETE'])
     @requires_auth('delete:events')
     def delete_event(payload, event_id):
+        event = Event.query.get(event_id)
+        if not event:
+            abort(404, "Event not found")
         try:
-            event = Event.query.get(event_id)
-            if not event:
-                abort(404, "Event not found")
-
             event.delete()
             return jsonify({"success": True, "deleted": event_id}), 200
         except Exception as e:

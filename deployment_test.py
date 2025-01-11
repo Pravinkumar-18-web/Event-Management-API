@@ -1,159 +1,172 @@
-import os
 import unittest
 import json
-
 import requests
 
-
-class CapstoneTestCase(unittest.TestCase):
-
+class EventManagementTestCase(unittest.TestCase):
     def setUp(self):
-        self.api = "https://fsnd-capstone-a261584c79ff.herokuapp.com"
+        """Executed before each test."""
+        self.api_url = "https://eventmanagementapi-1950dbc6e726.herokuapp.com"
 
-        self.movie = {
-            "title": "Valimai",
-            "release_date": "09-01-2025"
+        # Test data
+        self.event_data = {
+            "name": "Tech Conference",
+            "date": "2025-03-15T09:00:00",
+            "organizer_id": 1
+        }
+        self.attendee_data = {
+            "name": "John Durai",
+            "email": "johnDuraj@example.com"
         }
 
-        self.actor = {
-            "name": "Ajith",
-            "age": 45,
-            "gender": 'M',
-            "movie_id": 2
+        self.schedule_data = {
+            "title": "Keynote Speech",
+            "start_time": "2025-03-15T09:30:00",
+            "end_time": "2025-03-15T10:30:00"
         }
 
-        # Set up authentication tokens info
+        # Authentication tokens info (assumed to be set up in 'auth_config.json')
         with open('auth_config.json', 'r') as f:
             self.auth = json.loads(f.read())
 
-        assistant_jwt = self.auth["roles"]["Casting Assistant"]["jwt_token"]
-        director_jwt = self.auth["roles"]["Casting Director"]["jwt_token"]
-        producer_jwt = self.auth["roles"]["Executive Producer"]["jwt_token"]
         self.auth_headers = {
-            "Casting Assistant": f'Bearer {assistant_jwt}',
-            "Casting Director": f'Bearer {director_jwt}',
-            "Executive Producer": f'Bearer {producer_jwt}'
+            "Attendee": {"Authorization": f'Bearer {self.auth["roles"]["Attendee"]["jwt_token"]}'},
+            "Organizer": {"Authorization": f'Bearer {self.auth["roles"]["Organizer"]["jwt_token"]}'},
+            "Admin": {"Authorization": f'Bearer {self.auth["roles"]["Admin"]["jwt_token"]}'}
         }
 
-    def tearDown(self):
-        """Executed after reach test"""
-        pass
+    def test_get_events_success(self):
+        """Test fetching events successfully."""
+        response = requests.get(f"{self.api_url}/events", headers=self.auth_headers["Attendee"])
+        data = response.json()
 
-# Test: Get Movies (Successful)
-# Validates that the `/movies` endpoint returns a list of movies for a Casting Assistant role.
-    def test_get_movies(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Casting Assistant"]
-        }
-        res = requests.get(self.api + '/movies', headers=header_obj)
-        data = res.json()
-
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTrue(data['success'])
-        self.assertEqual(type(data["movies"]), type([]))
+        self.assertTrue(len(data['events']) > 0)
 
-# Test: Get Actors (Successful)
-# Verifies that the `/actors` endpoint returns a list of actors for a Casting Assistant role.
-    def test_get_actors(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Casting Assistant"]
+    def test_create_event_success(self):
+        """Test creating an event successfully."""
+        event_data = {
+            "name": "AI ON HUMANS",
+            "date": "2025-03-13T20:20:00",
+            "organizer_id": 3
         }
-        res = requests.get(self.api + '/actors', headers=header_obj)
-        data = res.json()
+        response = requests.post(f"{self.api_url}/events", json=event_data, headers=self.auth_headers["Admin"])
+        data = response.json()
 
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertTrue(data['success'])
-        self.assertEqual(type(data["actors"]), type([]))
+        self.assertEqual(data['event']['name'], event_data["name"])
 
-# Test: Get Actors (Successful)
-# Verifies that the `/actors` endpoint returns a list of actors for a Casting Assistant role.
-    def test_get_actors_by_director(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Casting Director"]
+    def test_add_attendee_success(self):
+        """Test adding an attendee to an event successfully."""
+        # Create an event
+        Event_data = {
+            "name": "cold werd discussion",
+            "date": "2025-03-05T09:00:00",
+            "organizer_id": 2
         }
-        res = requests.get(self.api + '/actors', headers=header_obj)
-        data = res.json()
+        event_response = requests.post(f"{self.api_url}/events", json=Event_data, headers=self.auth_headers["Admin"])
+        event_data = event_response.json()
+        event_id = event_data['event']['id']
 
-        self.assertEqual(res.status_code, 200)
+        # Add an attendee
+        response = requests.post(f"{self.api_url}/events/{event_id}/attendees", json=self.attendee_data, headers=self.auth_headers["Organizer"])
+        data = response.json()
+        self.assertEqual(response.status_code, 201)
         self.assertTrue(data['success'])
-        self.assertEqual(type(data["actors"]), type([]))
+        self.assertEqual(data['attendee']['name'], self.attendee_data["name"])
 
-# Test: Get Actors (Unauthorized)
-# Confirms that accessing the `/actors` endpoint without authorization results in a 401 error.
-    def test_get_actor_fail_401(self):
-        res = requests.get(self.api + '/actors')
-        data = res.json()
-
-        self.assertEqual(res.status_code, 401)
-        self.assertFalse(data['success'])
-        self.assertEqual(type(data["message"]), type(""))
-
-# Test: Create Movie (Bad Request)
-# Validates that creating a movie with missing fields returns a 400 error for the Executive Producer role.
-    def test_create_movies_fail_400(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Executive Producer"]
+    def test_add_schedule_success(self):
+        """Test adding a schedule to an event successfully."""
+        # Create an event
+        event_data = {
+            "name": "spaceX conference",
+            "date": "2025-03-15T09:00:00",
+            "organizer_id": 1
         }
-        movie_fail = {"title": "Movie"}
-        res = requests.post(
-            self.api + f'/movies',
-            json=movie_fail,
-            headers=header_obj)
-        data = res.json()
+        event_response = requests.post(f"{self.api_url}/events", json=event_data, headers=self.auth_headers["Admin"])
+        event_data = event_response.json()
+        event_id = event_data['event']['id']
 
-        self.assertEqual(res.status_code, 400)
+
+        # Add a schedule
+        response = requests.post(f"{self.api_url}/events/{event_id}/schedule", json=self.schedule_data, headers=self.auth_headers["Organizer"])
+        data = response.json()
+        self.assertEqual(response.status_code, 201)
+        self.assertTrue(data['success'])
+        self.assertEqual(data['schedule']['title'], self.schedule_data["title"])
+
+    def test_get_events_fail_401(self):
+        """Test unauthorized access to get events."""
+        response = requests.get(f"{self.api_url}/events")
+        data = response.json()
+
+        self.assertEqual(response.status_code, 401)
         self.assertFalse(data['success'])
-        self.assertEqual(data['message'], "Missing field for Movie")
+        self.assertEqual(type(data["message"]), str)
 
-# Test: Create Movie (Forbidden)
-# Ensures that a Casting Director cannot create a movie, resulting in a 403 error.
-    def test_create_movies_fail_403(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Casting Director"]
+    def test_create_event_fail_403(self):
+        """Test forbidden access when attendee tries to create an event."""
+        response = requests.post(f"{self.api_url}/events", json=self.event_data, headers=self.auth_headers["Attendee"])
+        data = response.json()
+
+        self.assertEqual(response.status_code, 403)
+        self.assertFalse(data['success'])
+        self.assertEqual(data['message'], "Permission not found.")
+
+    def test_add_attendee_fail_404(self):
+        """Test adding an attendee to a non-existing event."""
+        event_id = 999  # Non-existing event
+        response = requests.post(f"{self.api_url}/events/{event_id}/attendees", json=self.attendee_data, headers=self.auth_headers["Organizer"])
+        data = response.json()
+
+        self.assertEqual(response.status_code, 404)
+        self.assertFalse(data['success'])
+        self.assertEqual(data['message'], "Event not found")
+
+    def test_add_schedule_fail_404(self):
+        """Test adding a schedule to a non-existing event."""
+        event_id = 999  # Non-existing event
+        response = requests.post(f"{self.api_url}/events/{event_id}/schedule", json=self.schedule_data, headers=self.auth_headers["Organizer"])
+        data = response.json()
+
+        self.assertEqual(response.status_code, 404)
+        self.assertFalse(data['success'])
+
+    def test_admin_delete_event(self):
+        """Test admin deleting an event successfully."""
+        # Create an event
+        event_data_1 = {
+            "name": "MS Hackathon",
+            "date": "2025-03-25T20:20:00",
+            "organizer_id": 2
         }
-        movie_fail = {"title": "Movie"}
-        res = requests.post(
-            self.api + f'/movies',
-            json=movie_fail,
-            headers=header_obj)
-        data = res.json()
+        event_response = requests.post(f"{self.api_url}/events", json=event_data_1, headers=self.auth_headers["Admin"])
+        event_data = event_response.json()
+        event_id = event_data['event']['id']
 
-        self.assertEqual(res.status_code, 403)
+        # Delete the event
+        response = requests.delete(f"{self.api_url}/events/{event_id}", headers=self.auth_headers["Admin"])
+        data = response.json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(data['success'])
+
+    def test_organizer_create_event_fail_403(self):
+        """Test organizer attempting to create an event (forbidden)."""
+        response = requests.post(f"{self.api_url}/events", json=self.event_data, headers=self.auth_headers["Organizer"])
+        data = response.json()
+
+        self.assertEqual(response.status_code, 403)
         self.assertFalse(data['success'])
 
-# Test: Create Actor (Bad Request)
-# Validates that creating an actor with missing fields returns a 400 error for the Casting Director role.
-    def test_create_actors_fail_400(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Casting Director"]
-        }
-        actor_fail = {"name": "Actor"}
-        res = requests.post(
-            self.api + f'/actors',
-            json=actor_fail,
-            headers=header_obj)
-        data = res.json()
+    def test_attendee_create_event_fail_403(self):
+        """Test attendee attempting to create an event (forbidden)."""
+        response = requests.post(f"{self.api_url}/events", json=self.event_data, headers=self.auth_headers["Attendee"])
+        data = response.json()
 
-        self.assertEqual(res.status_code, 400)
+        self.assertEqual(response.status_code, 403)
         self.assertFalse(data['success'])
-        self.assertEqual(data['message'], "Missing field for Actor")
-
-# Test: Create Actor (Forbidden)
-# Confirms that a Casting Assistant cannot create an actor, resulting in a 403 error.
-    def test_create_actors_fail_403(self):
-        header_obj = {
-            "Authorization": self.auth_headers["Casting Assistant"]
-        }
-        actor_fail = {"name": "Actor"}
-        res = requests.post(
-            self.api + f'/actors',
-            json=actor_fail,
-            headers=header_obj)
-        data = res.json()
-
-        self.assertEqual(res.status_code, 403)
-        self.assertFalse(data['success'])
-
 
 # Make the tests conveniently executable
 if __name__ == "__main__":

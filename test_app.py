@@ -212,7 +212,6 @@ class EventManagementTestCase(unittest.TestCase):
         }
         res = self.client().post('/events', json=self.event_data, headers=header_obj)
         data = json.loads(res.data)
-        print(f"{data}")
 
         self.assertEqual(res.status_code, 201)
         self.assertTrue(data['success'])
