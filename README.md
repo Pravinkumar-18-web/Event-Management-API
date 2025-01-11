@@ -295,6 +295,105 @@ curl --location --request POST 'https://eventmanagementapi-1950dbc6e726.herokuap
     "success": true
 }
 ```
+#### POST /events/<event_id>/attendees
+
+Adds an attendee to the event. Requires `manage:attendees` permission.
+
+* **Example Request:** (Create)
+    ```bash
+	curl --location --request POST 'https://eventmanagementapi-1950dbc6e726.herokuapp.com/events/1/attendees' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+        "email": "Ravin@example.com",
+        "name": "Ravinkumar J"
+        }'
+    ```
+    
+* **Example Response:**
+    ```json
+	{
+    "attendee": {
+        "email": "Ravin@example.com",
+        "id": 3,
+        "name": "Ravinkumar J"
+    },
+    "success": true
+    }
+    ```
+
+#### POST /events/<event_id>/schedule
+
+Adds a schedule entry to the event.Requires `create:schedule` permission.
+
+* **Example Request:** (Create)
+    ```bash
+	curl --location --request POST 'https://eventmanagementapi-1950dbc6e726.herokuapp.com/events/1/schedule' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+        "end_time": "2025-03-15T21:30:00",
+        "start_time": "2025-03-15T21:00:00",
+        "title": "Cameo speech"
+        }'
+    ```
+    
+* **Example Response:**
+    ```json
+    {
+    "schedule": {
+            "end_time": "Sat, 15 Mar 2025 21:30:00 GMT",
+            "event_id": 1,
+            "id": 3,
+            "start_time": "Sat, 15 Mar 2025 21:00:00 GMT",
+            "title": "Cameo speech"
+        },
+        "success": true
+    }
+    ```
+
+#### PATCH /events/<event_id>
+
+Updates event details (e.g., name, description, or date).Requires `update:events` permission.
+
+* **Example Request:** 
+
+    ```bash
+	curl --location --request PATCH 'https://eventmanagementapi-1950dbc6e726.herokuapp.com/events/2' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{"date": "2025-03-15T09:00:00",
+        "description": "Graduation conference on techno",
+        "organizer_id":3,
+        "name": "Graduation day "}'
+    ```
+
+* **Example Response:**
+    ```json
+	{
+    "event": {
+        "attendees": [],
+        "date": "Sat, 15 Mar 2025 09:00:00 GMT",
+        "description": "Graduation conference on techno",
+        "id": 2,
+        "name": "Graduation day ",
+        "organizer_id": 2,
+        "schedules": []
+    },
+    "success": true
+    }   
+    ```
+
+#### DELETE /events/<event_id>
+
+Deletes an event and all associated data.Requires `delete:events` permission.
+
+* **Example Request:** `curl --request DELETE 'https://eventmanagementapi-1950dbc6e726.herokuapp.com/events/4'`
+
+* **Example Response:**
+    ```json
+	{
+    "deleted": 3,
+    "success": true
+    }   
+    ```
 
 #### Live Application URL:
 
