@@ -84,10 +84,10 @@ def create_app(test_config=None):
     @app.route('/events/<int:event_id>', methods=['GET'])
     @requires_auth('read:events')
     def get_event(payload, event_id):
+        event = Event.query.get(event_id)
+        if not event:
+            abort(404, "Event not found")
         try:
-            event = Event.query.get(event_id)
-            if not event:
-                abort(404, "Event not found")
             attendees = [{'id': a.id, 'name': a.name, 'email': a.email} for a in event.attendees]
             schedules = [{'id': s.id, 'title': s.title, 'start_time': s.start_time.isoformat(),
                           'end_time': s.end_time.isoformat()} for s in event.schedules]
@@ -135,24 +135,6 @@ def create_app(test_config=None):
     Description: Adds an attendee to a specific event by event ID.
     Response: JSON object containing the newly added attendee's details.
     """
-    # @app.route('/events/<int:event_id>/attendees', methods=['POST'])
-    # @requires_auth('manage:attendees')
-    # def add_attendee(payload, event_id):
-    #     data = request.get_json()
-    #     try:
-    #         event = Event.query.get(event_id)
-    #         if not event:
-    #             # abort(404, "Event not found")
-    #             abort(404, description="Event not found")
-
-    #         new_attendee = Attendee(name=data['name'], email=data['email'])
-    #         new_attendee.insert()
-    #         event.attendees.append(new_attendee)
-    #         db.session.commit()
-
-    #         return jsonify({"success": True, "attendee": new_attendee.format()}), 201
-    #     except Exception as e:
-    #         abort(400, str(e))
 
     @app.route('/events/<int:event_id>/attendees', methods=['POST'])
     @requires_auth('manage:attendees')
